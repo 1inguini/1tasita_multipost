@@ -41,7 +41,7 @@ THE SOFTWARE.
                 )
                 .forEach((text) => {
                   if (/[^\p{White_Space}]/u.test(text)) {
-                    console.log(text);
+                    // console.log(text);
                     const span = document.createElement("span");
                     span.textContent = text;
                     child.before(span);
@@ -634,10 +634,10 @@ THE SOFTWARE.
       function checkin(form, event) {
         const tags = [...form.tags.children].map((li) => li.textContent);
         // [Tissue](https://shikorism.net)
-        console.log("https://shikorism.net/api/v1/checkin", {
+        fetch("https://shikorism.net/api/v1/checkin", {
           method: "POST",
           headers: {
-            "Authorization": `Bearer ${form.tissueToken.value}`
+            Authorization: `Bearer ${form.tissueToken.value}`,
           },
           body: {
             checked_in_at: `${document.getElementById("date").value}T${document.getElementById("time").value
@@ -652,9 +652,12 @@ THE SOFTWARE.
         });
 
         // [Nuita](https://nuita.net)
-        console.log("https://nuita.net/nweets", {
+        fetch("https://nuita.net/nweets", {
           method: "POST",
-          body: {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({
             authenticity_token: form.nuitaToken.value,
             "nweet[statement]":
               form.link.value + "\n" + form.note.value + "\n" + tags.map((tag) => "#" + tag).join(" "),
@@ -662,11 +665,11 @@ THE SOFTWARE.
             "nweet[did_at]": `${document.getElementById("date").value}T${document.getElementById("time").value
               }:00+0900`,
             commit: "ヌイート"
-          },
+          }).toString(),
         });
       }
     </script>
-    <form onsubmit="checkin(this, event); return false">
+    <form id="post" onsubmit="checkin(this, event); return false">
       <h3>投稿先の情報</h3>
 
       <details>
