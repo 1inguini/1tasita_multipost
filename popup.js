@@ -41,10 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       el.childNodes.forEach(unSpan);
     }
+    a
   }
 
-  document.getElementById("post").addEventListener("submit", (event) => {
-    const form = this;
+  document.getElementById("submit").addEventListener("click", () => {
+    const form = document.getElementById("post");
+    if (!form.reportValidity()) {
+      return;
+    }
     const tags = [...form.tags.children].map((li) => li.textContent);
     // [Tissue](https://shikorism.net)
     fetch("https://shikorism.net/api/v1/checkin", {
@@ -73,10 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
       body: new URLSearchParams({
         authenticity_token: form.nuitaToken.value,
         "nweet[statement]":
-          form.link.value +
-          "\n" +
-          form.note.value +
-          "\n" +
+          (form.link.value ? form.link.value + "\n" : "") +
+          (form.note.value ? form.note.value + "\n" : "") +
           tags.map((tag) => "#" + tag).join(" "),
         "nweet[privacy]": form.isPrivate.checked ? "private" : "public",
         "nweet[did_at]": `${document.getElementById("date").value}T${document.getElementById("time").value
@@ -84,8 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         commit: "ヌイート",
       }).toString(),
     });
-    event.stopPropagation();
-    event.preventDefault();
   });
 
   function updateDate() {
@@ -116,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById("tagInput").addEventListener("click", (event) => {
-    console.log(event);
     if (event instanceof KeyboardEvent && event.key === "\t") {
       console.log("Tab");
     }

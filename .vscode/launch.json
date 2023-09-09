@@ -6,13 +6,12 @@
       "type": "firefox",
       "request": "launch",
       "reAttach": true,
-      "addonPath": "${workspaceRoot}",
+      "addonPath": "${workspaceFolder}",
       "reloadOnChange": {
-        "debounce": 0,
         "watch": [
-          "${workspaceRoot}/manifest.json",
-          "${workspaceRoot}/*.js",
-          "${workspaceRoot}/*.html"
+          "${workspaceFolder}/manifest.json",
+          "${workspaceFolder}/*.js",
+          "${workspaceFolder}/*.html"
         ]
       }
     },

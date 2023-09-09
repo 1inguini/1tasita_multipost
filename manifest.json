@@ -1,12 +1,17 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "1tasita_multipost",
   "version": "0.0.1",
   "description": "TissueとNuitaなどへの同時投稿ツール",
   "icons": {},
-  "action": {
+  "browser_action": {
     "default_title": "1tasita_multipost",
-    "default_popup": "index.html"
+    "default_popup": "popup.html"
   },
-  "permissions": []
+  "permissions": [],
+  "background": {
+    "scripts": [
+      "service-worker.js"
+    ]
+  }
 }

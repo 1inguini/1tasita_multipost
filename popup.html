@@ -32,6 +32,7 @@ THE SOFTWARE.
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <script src="popup.js"></script>
     <style>
       /* MVP.css v1.14 - https://github.com/andybrewer/mvp */
 
@@ -585,7 +586,6 @@ THE SOFTWARE.
   </head>
 
   <body>
-    <script src="index.js"></script>
     <header>
       <h2>今致してる?</h2>
     </header>
@@ -638,13 +638,7 @@ THE SOFTWARE.
 
         <label for="link">オカズリンク</label>
         <small>オカズのURLを貼り付けて登録することができます。</small>
-        <input
-          type="text"
-          id="link"
-          autocomplete="off"
-          placeholder="http://..."
-          value=""
-        />
+        <input type="text" id="link" placeholder="https://..." value="" />
 
         <label for="note">ノート</label>
         <small>最大 500 文字</small>
@@ -691,7 +685,7 @@ THE SOFTWARE.
           </div>
         </article>
 
-        <button type="submit">チェックイン/ヌイート/ノート</button>
+        <button id="submit" type="button">チェックイン/ヌイート/ノート</button>
       </form>
     </main>
   </body>
