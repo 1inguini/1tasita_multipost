@@ -7,11 +7,12 @@
       "request": "launch",
       "reAttach": true,
       "addonPath": "${workspaceFolder}",
+      "url": "https://shikorism.net/checkin",
       "reloadOnChange": {
         "watch": [
           "${workspaceFolder}/manifest.json",
-          "${workspaceFolder}/**/*.js",
-          "${workspaceFolder}/**/*.html"
+          "${workspaceFolder}/**.js",
+          "${workspaceFolder}/**.html"
         ]
       }
     }

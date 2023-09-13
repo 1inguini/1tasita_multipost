@@ -3,13 +3,31 @@
   "name": "1tasita_multipost",
   "version": "0.0.1",
   "description": "TissueとNuitaなどへの同時投稿ツール",
+  "permissions": [
+    "https://shikorism.net/checkin",
+    "https://shikorism.net/api/v1/checkins",
+    "https://nuita.net/nweets"
+  ],
   "icons": {},
   "browser_action": {
-    "default_title": "1tasita_multipost",
-    "default_popup": "popup.html"
+    "default_title": "1tasita_multipost"
   },
-  "permissions": [
-    "https://shikorism.net/*",
-    "https://nuita.net/*"
-  ]
+  "content_scripts": [
+    {
+      "matches": [
+        "https://shikorism.net/checkin"
+      ],
+      "js": [
+        "util.js",
+        "scrape.js"
+      ]
+    }
+  ],
+  "background": {
+    "type": "module",
+    "scripts": [
+      "background.mjs"
+    ],
+    "persistent": false
+  }
 }
