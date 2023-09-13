@@ -8,10 +8,8 @@
     "default_title": "1tasita_multipost",
     "default_popup": "popup.html"
   },
-  "permissions": [],
-  "background": {
-    "scripts": [
-      "service-worker.js"
-    ]
-  }
+  "permissions": [
+    "https://shikorism.net/*",
+    "https://nuita.net/*"
+  ]
 }
