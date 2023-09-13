@@ -18,7 +18,6 @@
         "https://shikorism.net/checkin"
       ],
       "js": [
-        "util.js",
         "scrape.js"
       ]
     }

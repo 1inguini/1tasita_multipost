@@ -11,8 +11,9 @@
       "reloadOnChange": {
         "watch": [
           "${workspaceFolder}/manifest.json",
-          "${workspaceFolder}/**.js",
-          "${workspaceFolder}/**.html"
+          "${workspaceFolder}/*.js",
+          "${workspaceFolder}/*.mjs",
+          "${workspaceFolder}/*.html"
         ]
       }
     }
