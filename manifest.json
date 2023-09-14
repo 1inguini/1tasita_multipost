@@ -5,7 +5,6 @@
   "description": "TissueとNuitaなどへの同時投稿ツール",
   "permissions": [
     "https://shikorism.net/checkin",
-    "https://shikorism.net/api/v1/checkins",
     "https://nuita.net/nweets"
   ],
   "icons": {},
