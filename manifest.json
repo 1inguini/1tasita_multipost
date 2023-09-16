@@ -4,6 +4,8 @@
   "version": "0.0.1",
   "description": "TissueとNuitaなどへの同時投稿ツール",
   "permissions": [
+    "webRequest",
+    "webRequestBlocking",
     "https://shikorism.net/checkin",
     "https://nuita.net/nweets"
   ],

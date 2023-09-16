@@ -5,13 +5,13 @@
 
   [...document.forms].map((form) => {
     if (form.action === "https://shikorism.net/checkin") {
-      form.addEventListener("submit", (event) => {
+      form.addEventListener("submit", async (event) => {
         const [year, month, day] = withId("date").value.split("/", 3);
         const [hour, minute] = withId("time")
           .value.split(":", 2)
           .map((str) => str.padStart(2, "0"));
 
-        browser.runtime.sendMessage({
+        await browser.runtime.sendMessage({
           year,
           month,
           day,

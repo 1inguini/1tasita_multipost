@@ -30,14 +30,13 @@ browser.runtime.onMessage.addListener(
     //       },
     //     })
     //   );
-
     const authenticity_token = new DOMParser()
       .parseFromString(
         await (await fetch("https://nuita.net")).text(),
         "text/html"
       )
       .head.getElementsByTagName("meta")["csrf-token"].content;
-    fetch("https://nuita.net/nweets", {
+    const response = await fetch("https://nuita.net/nweets", {
       method: "POST",
       credentials: "include",
       headers: {
@@ -54,5 +53,36 @@ browser.runtime.onMessage.addListener(
         commit: "ヌイート",
       }).toString(),
     });
+    console.log(response);
+    if (!response.ok) {
+      alert(response);
+    }
   }
+);
+
+browser.webRequest.onBeforeSendHeaders.addListener(
+  ({ requestHeaders }) => {
+    requestHeaders = requestHeaders.filter(
+      (header) =>
+        !(
+          header.name === "Origin" ||
+          header.name === "Referer" ||
+          header.name === "Sec-Fetch-Dest" ||
+          header.name === "Sec-Fetch-Mode" ||
+          header.name === "Sec-Fetch-Site" ||
+          header.name === "Sec-Fetch-User"
+        )
+    );
+    requestHeaders.push(
+      { name: "Origin", value: "https://nuita.net" },
+      { name: "Referer", value: "https://nuita.net/nweets/new" },
+      { name: "Sec-Fetch-Dest", value: "document" },
+      { name: "Sec-Fetch-Mode", value: "navigate" },
+      { name: "Sec-Fetch-Site", value: "same-origin" },
+      { name: "Sec-Fetch-User", value: "?1" }
+    );
+    return { requestHeaders };
+  },
+  { urls: ["https://nuita.net/nweets"] },
+  ["blocking", "requestHeaders"]
 );
