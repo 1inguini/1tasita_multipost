@@ -1,8 +1,11 @@
 {
   "manifest_version": 2,
   "name": "1tasita_multipost",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "TissueとNuitaなどへの同時投稿ツール",
+  "gecko": {
+    "id": "1tasita_multipost@1inguini.com"
+  },
   "permissions": [
     "webRequest",
     "webRequestBlocking",
